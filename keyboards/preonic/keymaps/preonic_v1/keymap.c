@@ -22,11 +22,18 @@
 #define NAV OSL(_NAV)
 #define UBU_BASE DF(_UBU_BASE)
 #define MAC_BASE DF(_BASE)
+#define EMOJI C(G(KC_SPC))
+#define LOCK C(G(KC_Q))
+#define FKEYS LT(_FKEYS, KC_3)
+#define MEDIA LT(_MEDIA, KC_2)
+#define NUMS LT(_NUMS, KC_1)
+
 
 enum preonic_layers {
     _BASE,
     _UBU_BASE,
     _SYMBOLS,
+    _FKEYS,
     _ARROWS,
     _NAV,
     _SHORTCUTS,
@@ -43,18 +50,25 @@ enum custom_keycodes {
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [_BASE] = LAYOUT_ortho_5x12(
-  KC_ESC,  LT(_NUMS, KC_1), LT(_MEDIA, KC_2), KC_3, KC_4,    KC_5,       KC_6,   KC_7,   KC_8,     KC_9,     KC_0,    KC_BSPC,
-  KC_TAB,  KC_Q,           KC_W,            KC_E, KC_R,    KC_T,       KC_Y,   KC_U,   KC_I,      KC_O,    KC_P,    SHORTCUTS,
-  ARROWS,  KC_A,           KC_S,            KC_D, KC_F,    KC_G,       KC_H,   KC_J,   KC_K,      KC_L,    KC_SCLN, KC_QUOT,
-  KC_LSFT, KC_Z,           KC_X,            KC_C, KC_V,    KC_B,       KC_N,   KC_M,   KC_COMM,   KC_DOT,  KC_SLSH, SYMBOLS,
-  KC_LCTL, KC_LALT,        C(G(KC_SPC)),    NAV,  KC_LGUI, S(KC_LGUI), KC_ENT, KC_SPC, A(KC_ENT), RGB,     KC_CAPS, C(G(KC_Q))
+  KC_ESC,  NUMS,    MEDIA, FKEYS, KC_4,    KC_5,       KC_6,   KC_7,   KC_8,      KC_9,    KC_0,    KC_BSPC,
+  KC_TAB,  KC_Q,    KC_W,  KC_E,  KC_R,    KC_T,       KC_Y,   KC_U,   KC_I,      KC_O,    KC_P,    SHORTCUTS,
+  ARROWS,  KC_A,    KC_S,  KC_D,  KC_F,    KC_G,       KC_H,   KC_J,   KC_K,      KC_L,    KC_SCLN, KC_QUOT,
+  KC_LSFT, KC_Z,    KC_X,  KC_C,  KC_V,    KC_B,       KC_N,   KC_M,   KC_COMM,   KC_DOT,  KC_SLSH, SYMBOLS,
+  KC_LCTL, KC_LALT, EMOJI, NAV,   KC_LGUI, S(KC_LGUI), KC_ENT, KC_SPC, A(KC_ENT), RGB,     KC_CAPS, LOCK
 ),
 [_UBU_BASE] = LAYOUT_ortho_5x12(
-  KC_ESC,  LT(_NUMS, KC_1), LT(_MEDIA, KC_2), KC_3, KC_4,    KC_5,       KC_6,   KC_7,   KC_8,      KC_9,   KC_0,    KC_BSPC,
-  KC_TAB,  KC_Q,            KC_W,             KC_E, KC_R,    KC_T,       KC_Y,   KC_U,   KC_I,      KC_O,   KC_P,    SHORTCUTS,
-  ARROWS,  KC_A,            KC_S,             KC_D, KC_F,    KC_G,       KC_H,   KC_J,   KC_K,      KC_L,   KC_SCLN, KC_QUOT,
-  KC_LSFT, KC_Z,            KC_X,             KC_C, KC_V,    KC_B,       KC_N,   KC_M,   KC_COMM,   KC_DOT, KC_SLSH, SYMBOLS,
-  KC_LGUI, KC_LALT,         _______,          NAV,  KC_LCTL, S(KC_LCTL), KC_ENT, KC_SPC, A(KC_ENT), RGB,    KC_CAPS, C(G(KC_Q))
+  KC_ESC,  NUMS,    MEDIA,   FKEYS, KC_4,    KC_5,       KC_6,   KC_7,   KC_8,      KC_9,   KC_0,    KC_BSPC,
+  KC_TAB,  KC_Q,    KC_W,    KC_E,  KC_R,    KC_T,       KC_Y,   KC_U,   KC_I,      KC_O,   KC_P,    SHORTCUTS,
+  ARROWS,  KC_A,    KC_S,    KC_D,  KC_F,    KC_G,       KC_H,   KC_J,   KC_K,      KC_L,   KC_SCLN, KC_QUOT,
+  KC_LSFT, KC_Z,    KC_X,    KC_C,  KC_V,    KC_B,       KC_N,   KC_M,   KC_COMM,   KC_DOT, KC_SLSH, SYMBOLS,
+  KC_LGUI, KC_LALT, _______, NAV,   KC_LCTL, S(KC_LCTL), KC_ENT, KC_SPC, A(KC_ENT), RGB,    KC_CAPS, C(G(KC_Q))
+),
+[_FKEYS] = LAYOUT_ortho_5x12(
+    _______, _______, _______, _______, _______, _______, _______, KC_F10,  KC_F11,  KC_F12, _______, _______,
+    _______, _______, _______, _______, _______, _______, _______, KC_F7,   KC_F8,   KC_F9, _______, _______,
+    _______, _______, _______, _______, _______, _______, _______, KC_F4,   KC_F5,   KC_F6, _______, _______,
+    _______, _______, _______, _______, _______, _______, _______, KC_F1,   KC_F2,   KC_F3, _______, _______,
+    _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
 ),
 [_SYMBOLS] = LAYOUT_ortho_5x12(
     _______, KC_EXLM, KC_AT,    KC_HASH, KC_DLR,  KC_PERC, KC_CIRC,  KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN, _______,
