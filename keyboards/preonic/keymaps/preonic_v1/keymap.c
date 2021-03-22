@@ -22,6 +22,7 @@
 #define NAV OSL(_NAV)
 #define UBU_BASE DF(_UBU_BASE)
 #define MAC_BASE DF(_BASE)
+#define GAME_BASE DF(_GAME_BASE)
 #define EMOJI C(G(KC_SPC))
 #define LOCK C(G(KC_Q))
 #define FKEYS LT(_FKEYS, KC_3)
@@ -32,6 +33,7 @@
 enum preonic_layers {
     _BASE,
     _UBU_BASE,
+    _GAME_BASE,
     _SYMBOLS,
     _FKEYS,
     _ARROWS,
@@ -55,6 +57,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   ARROWS,  KC_A,    KC_S,  KC_D,  KC_F,    KC_G,       KC_H,   KC_J,   KC_K,      KC_L,    KC_SCLN, KC_QUOT,
   KC_LSFT, KC_Z,    KC_X,  KC_C,  KC_V,    KC_B,       KC_N,   KC_M,   KC_COMM,   KC_DOT,  KC_SLSH, SYMBOLS,
   KC_LCTL, KC_LALT, EMOJI, NAV,   KC_LGUI, S(KC_LGUI), KC_ENT, KC_SPC, A(KC_ENT), RGB,     KC_CAPS, LOCK
+),
+[_GAME_BASE] = LAYOUT_ortho_5x12(
+  KC_ESC,  NUMS,    MEDIA, FKEYS,  KC_4,    KC_5,       KC_6,   KC_7,   KC_8,      KC_9,    KC_0,    KC_BSPC,
+  KC_TAB,  KC_Q,    KC_W,  KC_E,   KC_R,    KC_T,       KC_Y,   KC_U,   KC_I,      KC_O,    KC_P,    SHORTCUTS,
+  ARROWS,  KC_A,    KC_S,  KC_D,   KC_F,    KC_G,       KC_H,   KC_J,   KC_K,      KC_L,    KC_SCLN, KC_QUOT,
+  KC_LSFT, KC_Z,    KC_X,  KC_C,   KC_V,    KC_B,       KC_N,   KC_M,   KC_COMM,   KC_DOT,  KC_SLSH, SYMBOLS,
+  KC_LCTL, KC_LALT, EMOJI, KC_SPC, KC_LGUI, S(KC_LGUI), KC_ENT, KC_SPC, A(KC_ENT), RGB,     KC_CAPS, LOCK
 ),
 [_UBU_BASE] = LAYOUT_ortho_5x12(
   KC_ESC,  NUMS,    MEDIA,   FKEYS, KC_4,    KC_5,       KC_6,   KC_7,   KC_8,      KC_9,   KC_0,    KC_BSPC,
@@ -96,7 +105,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     _______, _______, _______,    _______, C(KC_T),    HYPR(KC_T), _______, _______,    G(A(KC_I)), _______,  _______,  _______,
     _______, _______, G(A(KC_T)), _______, G(A(KC_L)), _______,    _______, S(C(KC_J)), _______,    _______,  _______,  _______,
     _______, _______, _______,    _______, _______,    _______,    _______, _______,    _______,    _______,  _______,  _______,
-    _______, _______, _______,    _______, _______,    _______,    _______, _______,    _______,    UBU_BASE, MAC_BASE, RESET
+    _______, _______, _______,    _______, _______,    _______,    _______, _______,    GAME_BASE,  UBU_BASE, MAC_BASE, RESET
 ),
 [_MEDIA] = LAYOUT_ortho_5x12(
     _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
