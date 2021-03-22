@@ -15,6 +15,10 @@
 #define MATRIX_COL_PINS { D1, D0 }
 #define UNUSED_PINS
 
+#define ENCODERS_PAD_A { D4 }
+#define ENCODERS_PAD_B { C6 }
+#define ENCODER_RESOLUTION 4
+
 #define DIODE_DIRECTION COL2ROW
 
 #define DEBOUNCE 5
