@@ -1,19 +1,3 @@
-/* Copyright 2015-2017 Jack Humbert
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 2 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- */
-
 #include QMK_KEYBOARD_H
 #define ARROWS MO(_ARROWS)
 #define RGB MO(_RGB)
@@ -46,7 +30,8 @@ enum preonic_layers {
 enum custom_keycodes {
     FT_ARR = SAFE_RANGE,
     CLN_EQ,
-    FT_FUNC
+    TO_CHAN,
+    FROM_CHAN,
 };
 
 // Tap Dance declarations
@@ -65,21 +50,21 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   KC_TAB,  KC_Q,    KC_W,  KC_E,  KC_R,    KC_T,       KC_Y,   KC_U,   KC_I,      KC_O,    KC_P,    SHORTCUTS,
   ARROWS,  KC_A,    KC_S,  KC_D,  KC_F,    KC_G,       KC_H,   TD(TD_JJ_ESC), KC_K,      KC_L,    KC_SCLN, KC_QUOT,
   KC_LSFT, KC_Z,    KC_X,  KC_C,  KC_V,    KC_B,       KC_N,   KC_M,   KC_COMM,   KC_DOT,  KC_SLSH, SYMBOLS,
-  KC_LCTL, KC_LALT, EMOJI, NAV,   KC_LGUI, S(KC_LGUI), KC_ENT, KC_SPC, A(KC_ENT), RGB,     KC_CAPS, LOCK
+  KC_LCTL, KC_LALT, EMOJI, NAV,   KC_LGUI, S(KC_LGUI), KC_ENT, KC_SPC, A(KC_ENT), OSM(KC_HYPR),     KC_CAPS, LOCK
 ),
 [_GAME_BASE] = LAYOUT_ortho_5x12(
   KC_ESC,  NUMS,    MEDIA, FKEYS,  KC_4,    KC_5,       KC_6,   KC_7,   KC_8,      KC_9,    KC_0,    KC_BSPC,
   KC_TAB,  KC_Q,    KC_W,  KC_E,   KC_R,    KC_T,       KC_Y,   KC_U,   KC_I,      KC_O,    KC_P,    SHORTCUTS,
   ARROWS,  KC_A,    KC_S,  KC_D,   KC_F,    KC_G,       KC_H,   TD(TD_JJ_ESC), KC_K,      KC_L,    KC_SCLN, KC_QUOT,
   KC_LSFT, KC_Z,    KC_X,  KC_C,   KC_V,    KC_B,       KC_N,   KC_M,   KC_COMM,   KC_DOT,  KC_SLSH, SYMBOLS,
-  KC_LCTL, KC_LALT, EMOJI, KC_SPC, KC_LGUI, S(KC_LGUI), KC_ENT, KC_SPC, A(KC_ENT), RGB,     KC_CAPS, LOCK
+  KC_LCTL, KC_LALT, EMOJI, KC_SPC, KC_LGUI, S(KC_LGUI), KC_ENT, KC_SPC, A(KC_ENT), OSM(KC_HYPR),     KC_CAPS, LOCK
 ),
 [_UBU_BASE] = LAYOUT_ortho_5x12(
   KC_ESC,  NUMS,    MEDIA,   FKEYS, KC_4,    KC_5,       KC_6,   KC_7,   KC_8,      KC_9,   KC_0,    KC_BSPC,
   KC_TAB,  KC_Q,    KC_W,    KC_E,  KC_R,    KC_T,       KC_Y,   KC_U,   KC_I,      KC_O,   KC_P,    SHORTCUTS,
   ARROWS,  KC_A,    KC_S,    KC_D,  KC_F,    KC_G,       KC_H,   TD(TD_JJ_ESC), KC_K,      KC_L,   KC_SCLN, KC_QUOT,
   KC_LSFT, KC_Z,    KC_X,    KC_C,  KC_V,    KC_B,       KC_N,   KC_M,   KC_COMM,   KC_DOT, KC_SLSH, SYMBOLS,
-  KC_LGUI, KC_LALT, _______, NAV,   KC_LCTL, S(KC_LCTL), KC_ENT, KC_SPC, A(KC_ENT), RGB,    KC_CAPS, C(G(KC_Q))
+  KC_LGUI, KC_LALT, _______, NAV,   KC_LCTL, S(KC_LCTL), KC_ENT, KC_SPC, A(KC_ENT), OSM(KC_HYPR),    KC_CAPS, C(G(KC_Q))
 ),
 [_FKEYS] = LAYOUT_ortho_5x12(
     _______, _______, _______, _______, _______, _______, _______, KC_F10,  KC_F11,  KC_F12, _______, _______,
@@ -89,11 +74,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
 ),
 [_SYMBOLS] = LAYOUT_ortho_5x12(
-    _______, KC_EXLM, KC_AT,    KC_HASH, KC_DLR,  KC_PERC, KC_CIRC,  KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN, _______,
-    _______, _______, KC_PLUS,  KC_LCBR, KC_RCBR, FT_ARR,  CLN_EQ,   KC_EQL,  KC_AMPR, _______, _______, _______,
-    _______, KC_UNDS, KC_MINUS, KC_LPRN, KC_RPRN, KC_GRV,  KC_TILDE, KC_DLR,  KC_PIPE, KC_BSLS, _______, _______,
-    _______, _______, _______,  KC_LBRC, KC_RBRC, FT_FUNC, _______,  _______, _______, _______, _______, _______,
-    _______, _______, _______,  _______, _______, _______, _______,  _______, _______, _______, _______, _______
+    _______, KC_EXLM, KC_AT,    KC_HASH, KC_DLR,  KC_PERC, KC_CIRC,  KC_AMPR, KC_ASTR, KC_LPRN,   KC_RPRN, _______,
+    _______, _______, KC_PLUS,  KC_LCBR, KC_RCBR, FT_ARR,  CLN_EQ,   KC_EQL,  KC_AMPR, _______,   _______, _______,
+    _______, KC_UNDS, KC_MINUS, KC_LPRN, KC_RPRN, KC_GRV,  KC_TILDE, KC_DLR,  KC_PIPE, KC_BSLS,   _______, _______,
+    _______, _______, _______,  KC_LBRC, KC_RBRC, _______, _______,  _______, TO_CHAN, FROM_CHAN, _______, _______,
+    _______, _______, _______,  _______, _______, _______, _______,  _______, _______, _______,   _______, _______
 ),
 [_ARROWS] = LAYOUT_ortho_5x12(
     _______, _______, _______, _______, _______, _______, _______, _______,        _______, _______, _______,  _______,
@@ -154,29 +139,24 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
     case CLN_EQ:
         if (record->event.pressed) {
-            // when keycode is pressed
             SEND_STRING(":=");
-        } else {
-            // when keycode is released
         }
         break;
     case FT_ARR:
         if (record->event.pressed) {
-            // when keycode is pressed
             SEND_STRING("=>");
-        } else {
-            // when keycode is released
         }
         break;
-    case FT_FUNC:
+    case TO_CHAN:
         if (record->event.pressed) {
-            // when keycode is pressed
-            SEND_STRING("() => {\n");
-        } else {
-            // when keycode is released
+            SEND_STRING("<-");
         }
         break;
-
+    case FROM_CHAN:
+        if (record->event.pressed) {
+            SEND_STRING("->");
+        }
+        break;
     }
     return true;
 };
