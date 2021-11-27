@@ -1,6 +1,5 @@
 #include QMK_KEYBOARD_H
 #define ARROWS MO(_ARROWS)
-#define RGB MO(_RGB)
 #define SYMBOLS OSL(_SYMBOLS)
 #define SHORTCUTS OSL(_SHORTCUTS)
 #define NAV OSL(_NAV)
@@ -23,7 +22,6 @@ enum preonic_layers {
     _NAV,
     _SHORTCUTS,
     _MEDIA,
-    _RGB,
     _NUMS
 };
 
@@ -31,7 +29,6 @@ enum custom_keycodes {
     FT_ARR = SAFE_RANGE,
     CLN_EQ,
     TO_CHAN,
-    FROM_CHAN,
 };
 
 // Tap Dance declarations
@@ -74,11 +71,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
 ),
 [_SYMBOLS] = LAYOUT_ortho_5x12(
-    _______, KC_EXLM, KC_AT,    KC_HASH, KC_DLR,  KC_PERC, KC_CIRC,  KC_AMPR, KC_ASTR, KC_LPRN,   KC_RPRN, _______,
-    _______, _______, KC_PLUS,  KC_LCBR, KC_RCBR, FT_ARR,  CLN_EQ,   KC_EQL,  KC_AMPR, _______,   _______, _______,
-    _______, KC_UNDS, KC_MINUS, KC_LPRN, KC_RPRN, KC_GRV,  KC_TILDE, KC_DLR,  KC_PIPE, KC_BSLS,   _______, _______,
-    _______, _______, _______,  KC_LBRC, KC_RBRC, _______, _______,  _______, TO_CHAN, FROM_CHAN, _______, _______,
-    _______, _______, _______,  _______, _______, _______, _______,  _______, _______, _______,   _______, _______
+    _______, KC_EXLM, KC_AT,    KC_HASH, KC_DLR,  KC_PERC, KC_CIRC,  KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN, _______,
+    _______, _______, KC_PLUS,  KC_LCBR, KC_RCBR, FT_ARR,  CLN_EQ,   KC_EQL,  KC_AMPR, _______, _______, _______,
+    _______, KC_UNDS, KC_MINUS, KC_LPRN, KC_RPRN, KC_GRV,  KC_TILDE, KC_DLR,  KC_PIPE, KC_BSLS, _______, _______,
+    _______, _______, _______,  KC_LBRC, KC_RBRC, _______, _______,  _______, TO_CHAN, _______, _______, _______,
+    _______, _______, _______,  _______, _______, _______, _______,  _______, _______, _______, _______, _______
 ),
 [_ARROWS] = LAYOUT_ortho_5x12(
     _______, _______, _______, _______, _______, _______, _______, _______,        _______, _______, _______,  _______,
@@ -98,8 +95,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     _______, _______, _______,    _______, _______,    _______,    _______, _______,    _______,    _______,  _______,  _______,
     _______, _______, _______,    _______, C(KC_T),    HYPR(KC_T), _______, _______,    G(A(KC_I)), _______,  _______,  _______,
     _______, _______, G(A(KC_T)), _______, G(A(KC_L)), _______,    _______, S(C(KC_J)), _______,    _______,  _______,  _______,
-    _______, _______, _______,    _______, _______,    _______,    _______, _______,    _______,    _______,  _______,  _______,
-    _______, _______, _______,    _______, _______,    _______,    _______, _______,    GAME_BASE,  UBU_BASE, MAC_BASE, RESET
+    _______, RGB_TOG, RGB_MOD,    RGB_HUI, RGB_SAI,    RGB_VAI,    RGB_SPI, _______,    _______,    _______,  _______,  _______,
+    _______, _______, RGB_RMOD,   RGB_HUD, RGB_SAD,    RGB_VAD,    RGB_SPD, _______,    GAME_BASE,  UBU_BASE, MAC_BASE, RESET
 ),
 [_MEDIA] = LAYOUT_ortho_5x12(
     _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
@@ -107,13 +104,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     _______, _______, _______, _______, _______, _______, _______, KC_MPRV, KC_MPLY, KC_MNXT, _______, _______,
     _______, _______, _______, _______, _______, _______, _______, _______, KC_VOLD, _______, _______, _______,
     _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
-),
-[_RGB] = LAYOUT_ortho_5x12(
-    _______, RGB_TOG, RGB_MOD,  RGB_HUI, RGB_SAI, RGB_VAI, RGB_SPI, _______, _______, _______, _______, _______,
-    _______, _______, RGB_RMOD, RGB_HUD, RGB_SAD, RGB_VAD, RGB_SPD, _______, _______, _______, _______, _______,
-    _______, _______, _______,  _______, _______, _______, _______, _______, _______, _______, _______, _______,
-    _______, _______, _______,  _______, _______, _______, _______, _______, _______, _______, _______, _______,
-    _______, _______, _______,  _______, _______, _______, _______, _______, _______, _______, _______, _______
 ),
 [_NUMS] = LAYOUT_ortho_5x12(
     _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
@@ -152,11 +142,5 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             SEND_STRING("<-");
         }
         break;
-    case FROM_CHAN:
-        if (record->event.pressed) {
-            SEND_STRING("->");
-        }
-        break;
-    }
     return true;
 };
