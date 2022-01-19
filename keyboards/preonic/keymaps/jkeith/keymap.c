@@ -43,25 +43,25 @@ qk_tap_dance_action_t tap_dance_actions[] = {
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [_BASE] = LAYOUT_ortho_5x12(
-  KC_ESC,  NUMS,    MEDIA, FKEYS, KC_4,    KC_5,       KC_6,   KC_7,   KC_8,      KC_9,    KC_0,    KC_BSPC,
-  KC_TAB,  KC_Q,    KC_W,  KC_E,  KC_R,    KC_T,       KC_Y,   KC_U,   KC_I,      KC_O,    KC_P,    SHORTCUTS,
-  ARROWS,  KC_A,    KC_S,  KC_D,  KC_F,    KC_G,       KC_H,   TD(TD_JJ_ESC), KC_K,      KC_L,    KC_SCLN, KC_QUOT,
-  KC_LSFT, KC_Z,    KC_X,  KC_C,  KC_V,    KC_B,       KC_N,   KC_M,   KC_COMM,   KC_DOT,  KC_SLSH, SYMBOLS,
-  KC_LCTL, KC_LALT, EMOJI, NAV,   KC_LGUI, S(KC_LGUI), KC_ENT, KC_SPC, A(KC_ENT), OSM(KC_HYPR),     KC_CAPS, LOCK
+  KC_ESC,  NUMS,    MEDIA, FKEYS, KC_4,    KC_5,       KC_6,   KC_7,          KC_8,      KC_9,          KC_0,    KC_BSPC,
+  KC_TAB,  KC_Q,    KC_W,  KC_E,  KC_R,    KC_T,       KC_Y,   KC_U,          KC_I,      KC_O,          KC_P,    SHORTCUTS,
+  ARROWS,  KC_A,    KC_S,  KC_D,  KC_F,    KC_G,       KC_H,   TD(TD_JJ_ESC), KC_K,      KC_L,          KC_SCLN, KC_QUOT,
+  KC_LSFT, KC_Z,    KC_X,  KC_C,  KC_V,    KC_B,       KC_N,   KC_M,          KC_COMM,   KC_DOT,        KC_SLSH, SYMBOLS,
+  KC_LCTL, KC_LALT, EMOJI, NAV,   KC_LGUI, S(KC_LGUI), KC_ENT, KC_SPC,        A(KC_ENT), OSM(MOD_HYPR), KC_CAPS, LOCK
 ),
 [_GAME_BASE] = LAYOUT_ortho_5x12(
-  KC_ESC,  NUMS,    MEDIA, FKEYS,  KC_4,    KC_5,       KC_6,   KC_7,   KC_8,      KC_9,    KC_0,    KC_BSPC,
-  KC_TAB,  KC_Q,    KC_W,  KC_E,   KC_R,    KC_T,       KC_Y,   KC_U,   KC_I,      KC_O,    KC_P,    SHORTCUTS,
-  ARROWS,  KC_A,    KC_S,  KC_D,   KC_F,    KC_G,       KC_H,   TD(TD_JJ_ESC), KC_K,      KC_L,    KC_SCLN, KC_QUOT,
-  KC_LSFT, KC_Z,    KC_X,  KC_C,   KC_V,    KC_B,       KC_N,   KC_M,   KC_COMM,   KC_DOT,  KC_SLSH, SYMBOLS,
-  KC_LCTL, KC_LALT, EMOJI, KC_SPC, KC_LGUI, S(KC_LGUI), KC_ENT, KC_SPC, A(KC_ENT), OSM(KC_HYPR),     KC_CAPS, LOCK
+  KC_ESC,  NUMS,    MEDIA, FKEYS,  KC_4,    KC_5,       KC_6,   KC_7,          KC_8,      KC_9,          KC_0,    KC_BSPC,
+  KC_TAB,  KC_Q,    KC_W,  KC_E,   KC_R,    KC_T,       KC_Y,   KC_U,          KC_I,      KC_O,          KC_P,    SHORTCUTS,
+  ARROWS,  KC_A,    KC_S,  KC_D,   KC_F,    KC_G,       KC_H,   TD(TD_JJ_ESC), KC_K,      KC_L,          KC_SCLN, KC_QUOT,
+  KC_LSFT, KC_Z,    KC_X,  KC_C,   KC_V,    KC_B,       KC_N,   KC_M,          KC_COMM,   KC_DOT,        KC_SLSH, SYMBOLS,
+  KC_LCTL, KC_LALT, EMOJI, KC_SPC, KC_LGUI, S(KC_LGUI), KC_ENT, KC_SPC,        A(KC_ENT), OSM(MOD_HYPR), KC_CAPS, LOCK
 ),
 [_UBU_BASE] = LAYOUT_ortho_5x12(
-  KC_ESC,  NUMS,    MEDIA,   FKEYS, KC_4,    KC_5,       KC_6,   KC_7,   KC_8,      KC_9,   KC_0,    KC_BSPC,
-  KC_TAB,  KC_Q,    KC_W,    KC_E,  KC_R,    KC_T,       KC_Y,   KC_U,   KC_I,      KC_O,   KC_P,    SHORTCUTS,
-  ARROWS,  KC_A,    KC_S,    KC_D,  KC_F,    KC_G,       KC_H,   TD(TD_JJ_ESC), KC_K,      KC_L,   KC_SCLN, KC_QUOT,
-  KC_LSFT, KC_Z,    KC_X,    KC_C,  KC_V,    KC_B,       KC_N,   KC_M,   KC_COMM,   KC_DOT, KC_SLSH, SYMBOLS,
-  KC_LGUI, KC_LALT, _______, NAV,   KC_LCTL, S(KC_LCTL), KC_ENT, KC_SPC, A(KC_ENT), OSM(KC_HYPR),    KC_CAPS, C(G(KC_Q))
+  KC_ESC,  NUMS,    MEDIA,   FKEYS, KC_4,    KC_5,       KC_6,   KC_7,          KC_8,      KC_9,         KC_0,    KC_BSPC,
+  KC_TAB,  KC_Q,    KC_W,    KC_E,  KC_R,    KC_T,       KC_Y,   KC_U,          KC_I,      KC_O,         KC_P,    SHORTCUTS,
+  ARROWS,  KC_A,    KC_S,    KC_D,  KC_F,    KC_G,       KC_H,   TD(TD_JJ_ESC), KC_K,      KC_L,         KC_SCLN, KC_QUOT,
+  KC_LSFT, KC_Z,    KC_X,    KC_C,  KC_V,    KC_B,       KC_N,   KC_M,          KC_COMM,   KC_DOT,       KC_SLSH, SYMBOLS,
+  KC_LGUI, KC_LALT, _______, NAV,   KC_LCTL, S(KC_LCTL), KC_ENT, KC_SPC,        A(KC_ENT), OSM(MOD_HYPR),KC_CAPS, C(G(KC_Q))
 ),
 [_FKEYS] = LAYOUT_ortho_5x12(
     _______, _______, _______, _______, _______, _______, _______, KC_F10,  KC_F11,  KC_F12, _______, _______,
