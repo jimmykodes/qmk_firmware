@@ -5,7 +5,6 @@
 #define NAV OSL(_NAV)
 #define UBU_BASE DF(_UBU_BASE)
 #define MAC_BASE DF(_BASE)
-#define GAME_BASE DF(_GAME_BASE)
 #define EMOJI C(G(KC_SPC))
 #define LOCK C(G(KC_Q))
 #define FKEYS LT(_FKEYS, KC_3)
@@ -15,7 +14,6 @@
 enum preonic_layers {
     _BASE,
     _UBU_BASE,
-    _GAME_BASE,
     _SYMBOLS,
     _FKEYS,
     _ARROWS,
@@ -28,7 +26,8 @@ enum preonic_layers {
 enum custom_keycodes {
     FT_ARR = SAFE_RANGE,
     CLN_EQ,
-    TO_CHAN,
+    L_ARR,
+    R_ARR,
 };
 
 // Tap Dance declarations
@@ -49,13 +48,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   KC_LSFT, KC_Z,    KC_X,  KC_C,  KC_V,    KC_B,       KC_N,   KC_M,          KC_COMM,   KC_DOT,        KC_SLSH, SYMBOLS,
   KC_LCTL, KC_LALT, EMOJI, NAV,   KC_LGUI, S(KC_LGUI), KC_ENT, KC_SPC,        A(KC_ENT), OSM(MOD_HYPR), KC_CAPS, LOCK
 ),
-[_GAME_BASE] = LAYOUT_ortho_5x12(
-  KC_ESC,  NUMS,    MEDIA, FKEYS,  KC_4,    KC_5,       KC_6,   KC_7,          KC_8,      KC_9,          KC_0,    KC_BSPC,
-  KC_TAB,  KC_Q,    KC_W,  KC_E,   KC_R,    KC_T,       KC_Y,   KC_U,          KC_I,      KC_O,          KC_P,    SHORTCUTS,
-  ARROWS,  KC_A,    KC_S,  KC_D,   KC_F,    KC_G,       KC_H,   TD(TD_JJ_ESC), KC_K,      KC_L,          KC_SCLN, KC_QUOT,
-  KC_LSFT, KC_Z,    KC_X,  KC_C,   KC_V,    KC_B,       KC_N,   KC_M,          KC_COMM,   KC_DOT,        KC_SLSH, SYMBOLS,
-  KC_LCTL, KC_LALT, EMOJI, KC_SPC, KC_LGUI, S(KC_LGUI), KC_ENT, KC_SPC,        A(KC_ENT), OSM(MOD_HYPR), KC_CAPS, LOCK
-),
 [_UBU_BASE] = LAYOUT_ortho_5x12(
   KC_ESC,  NUMS,    MEDIA,   FKEYS, KC_4,    KC_5,       KC_6,   KC_7,          KC_8,      KC_9,         KC_0,    KC_BSPC,
   KC_TAB,  KC_Q,    KC_W,    KC_E,  KC_R,    KC_T,       KC_Y,   KC_U,          KC_I,      KC_O,         KC_P,    SHORTCUTS,
@@ -72,9 +64,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 ),
 [_SYMBOLS] = LAYOUT_ortho_5x12(
     _______, KC_EXLM, KC_AT,    KC_HASH, KC_DLR,  KC_PERC, KC_CIRC,  KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN, _______,
-    _______, _______, KC_PLUS,  KC_LCBR, KC_RCBR, FT_ARR,  CLN_EQ,   KC_EQL,  KC_AMPR, _______, _______, _______,
+    _______, KC_PERC, KC_PLUS,  KC_LCBR, KC_RCBR, FT_ARR,  CLN_EQ,   KC_EQL,  KC_AMPR, _______, _______, _______,
     _______, KC_UNDS, KC_MINUS, KC_LPRN, KC_RPRN, KC_GRV,  KC_TILDE, KC_DLR,  KC_PIPE, KC_BSLS, _______, _______,
-    _______, _______, _______,  KC_LBRC, KC_RBRC, _______, _______,  _______, TO_CHAN, _______, _______, _______,
+    _______, _______, _______,  KC_LBRC, KC_RBRC, _______, _______,  _______, L_ARR,   R_ARR,   _______, _______,
     _______, _______, _______,  _______, _______, _______, _______,  _______, _______, _______, _______, _______
 ),
 [_ARROWS] = LAYOUT_ortho_5x12(
@@ -92,11 +84,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     _______, _______, _______, _______, _______, _______, _______,       _______,    _______,    _______,      _______,       _______
 ),
 [_SHORTCUTS] = LAYOUT_ortho_5x12(
-    _______, _______, _______,    _______, _______,    _______,    _______, _______,    _______,    _______,  _______,  _______,
-    _______, _______, _______,    _______, C(KC_T),    HYPR(KC_T), _______, _______,    G(A(KC_I)), _______,  _______,  _______,
-    _______, _______, G(A(KC_T)), C(KC_J), G(A(KC_L)), _______,    _______, S(C(KC_J)), _______,    _______,  _______,  _______,
-    _______, RGB_TOG, RGB_MOD,    RGB_HUI, RGB_SAI,    RGB_VAI,    RGB_SPI, _______,    _______,    _______,  _______,  _______,
-    _______, _______, RGB_RMOD,   RGB_HUD, RGB_SAD,    RGB_VAD,    RGB_SPD, _______,    GAME_BASE,  UBU_BASE, MAC_BASE, RESET
+    _______,  _______, _______,    _______, _______,    _______,    _______, _______,    _______,    _______, _______, _______,
+    _______,  _______, _______,    _______, C(KC_T),    HYPR(KC_T), _______, _______,    G(A(KC_I)), _______, _______, _______,
+    _______,  _______, G(A(KC_T)), C(KC_J), G(A(KC_L)), _______,    _______, S(C(KC_J)), _______,    _______, _______, _______,
+    UBU_BASE, RGB_TOG, RGB_MOD,    RGB_HUI, RGB_SAI,    RGB_VAI,    RGB_SPI, _______,    _______,    _______, _______, _______,
+    MAC_BASE, _______, RGB_RMOD,   RGB_HUD, RGB_SAD,    RGB_VAD,    RGB_SPD, _______,    _______,    _______, _______, RESET
 ),
 [_MEDIA] = LAYOUT_ortho_5x12(
     _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
@@ -106,11 +98,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
 ),
 [_NUMS] = LAYOUT_ortho_5x12(
-    _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
-    _______, _______, _______, _______, _______, _______, _______, KC_P7,   KC_P8,   KC_P9,   _______, _______,
-    _______, _______, _______, _______, _______, _______, _______, KC_P4,   KC_P5,   KC_P6,   _______, _______,
-    _______, _______, _______, _______, _______, _______, _______, KC_P1,   KC_P2,   KC_P3,   _______, _______,
-    _______, _______, _______, _______, _______, _______, _______, KC_P0,   _______, KC_PDOT, _______, _______
+    _______, _______, _______, _______, _______, _______, _______, KC_NUM, _______, _______, _______, _______,
+    _______, _______, _______, _______, _______, _______, _______, KC_P7,  KC_P8,   KC_P9,   _______, _______,
+    _______, _______, _______, _______, _______, _______, _______, KC_P4,  KC_P5,   KC_P6,   _______, _______,
+    _______, _______, _______, _______, _______, _______, _______, KC_P1,  KC_P2,   KC_P3,   _______, _______,
+    _______, _______, _______, _______, _______, _______, _______, KC_P0,  _______, KC_PDOT, _______, _______
 ),
 
 /*
@@ -137,9 +129,14 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             SEND_STRING("=>");
         }
         break;
-    case TO_CHAN:
+    case L_ARR:
         if (record->event.pressed) {
             SEND_STRING("<-");
+        }
+        break;
+    case R_ARR:
+        if (record->event.pressed) {
+            SEND_STRING("->");
         }
         break;
     }
