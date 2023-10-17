@@ -18,4 +18,7 @@
 #define LOCKING_SUPPORT_ENABLE
 
 /* Locking resynchronize hack */
+
 #define LOCKING_RESYNC_ENABLE
+
+#define ONESHOT_TAP_TOGGLE 3

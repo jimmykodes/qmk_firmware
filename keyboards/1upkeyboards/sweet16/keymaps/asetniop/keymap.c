@@ -15,10 +15,10 @@ enum layers {
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_BASE]=LAYOUT_ortho_4x4(
-        KC_ESC,         KC_TAB,       KC_LSFT,      KC_BSPC,
-        LT(_A, KC_A),   LT(_S, KC_S), LT(_E, KC_E), LT(_T, KC_T),
-        LT(_N, KC_N),   LT(_I, KC_I), LT(_O, KC_O), LT(_R, KC_R),
-        LGUI_T(KC_SPC), KC_ENT,       XXXXXXX,        XXXXXXX
+        KC_ESC,         KC_TAB,            OSM(MOD_LSFT), KC_BSPC,
+        LT(_A, KC_A),   LT(_S, KC_S),      LT(_E, KC_E), LT(_T, KC_T),
+        LT(_N, KC_N),   LT(_I, KC_I),      LT(_O, KC_O), LT(_R, KC_R),
+        LGUI_T(KC_SPC), LT(_ENTR, KC_ENT), OSM(MOD_LCTL), XXXXXXX
     ),
     [_A]=LAYOUT_ortho_4x4(
         KC_NO,   KC_EXLM, KC_AT, KC_HASH,
@@ -57,7 +57,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         _______, KC_NO,   XXXXXXX, XXXXXXX
     ),
     [_O]=LAYOUT_ortho_4x4(
-        _______, _______, KC_NO,   _______,
+        _______, _______, RESET,   _______,
         _______, _______, KC_NO,   _______,
         _______, _______, KC_TRNS, _______,
         _______, _______, XXXXXXX, XXXXXXX
