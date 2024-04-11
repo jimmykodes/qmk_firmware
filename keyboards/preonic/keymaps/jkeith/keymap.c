@@ -1,18 +1,22 @@
 #include QMK_KEYBOARD_H
-#define ARROWS MO(_ARROWS)
+
 #define SYMBOLS OSL(_SYMBOLS)
 #define EMOJI C(G(KC_SPC))
 #define LOCK C(G(KC_Q))
-#define NUMS LT(_NUMS, KC_1)
-#define MEDIA LT(_MEDIA, KC_2)
-#define FKEYS LT(_FKEYS, KC_3)
-#define SYSTEM LT(_SYSTEM, KC_4)
+
+#define ARROWS LT(_ARROWS, KC_TAB)
+#define NUMS LT(_NUMS, KC_Q)
+#define MEDIA LT(_MEDIA, KC_W)
+#define FKEYS LT(_MEDIA, KC_E)
+#define SYSTEM LT(_SYSTEM, KC_ESC)
+#define NUMROW LT(_NUMROW, KC_ENT)
 
 enum preonic_layers {
     _BASE,
     _SYMBOLS,
     _ARROWS,
     _NUMS,
+    _NUMROW,
     _MEDIA,
     _FKEYS,
     _SYSTEM,
@@ -25,31 +29,21 @@ enum custom_keycodes {
     R_ARR,
 };
 
-// // Tap Dance declarations
-// enum {
-//     TD_ESC,
-// };
-//
-// // Tap Dance definitions
-// qk_tap_dance_action_t tap_dance_actions[] = {
-//         [TD_ESC] = ACTION_TAP_DANCE_DOUBLE(KC_I, KC_ESC),
-// };
-
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [_BASE] = LAYOUT_ortho_5x12(
 //  < ESC >, <  1  >, <  2  >, <  3  >, <  4  >, <  5  >,     /*  |  */  <  6  >, <  7  >, <  8  >,       <  9  >, <  0  >, < BKSP >
-    KC_ESC,  NUMS,    MEDIA,   FKEYS,   SYSTEM,  KC_5,        /*  |  */  KC_6,    KC_7,    KC_8,          KC_9,    KC_0,    KC_BSPC,
-    KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,        /*  |  */  KC_Y,    KC_U,    KC_I,          KC_O,    KC_P,    _______,
+    _______, KC_1,    KC_2,    KC_3,    KC_4,    KC_5,        /*  |  */  KC_6,    KC_7,    KC_8,          KC_9,    KC_0,    _______,
+    SYSTEM,  NUMS,    MEDIA,   FKEYS,   KC_R,    KC_T,        /*  |  */  KC_Y,    KC_U,    KC_I,          KC_O,    KC_P,    KC_BSPC,
     ARROWS,  KC_A,    KC_S,    KC_D,    KC_F,    KC_G,        /*  |  */  KC_H,    KC_J,    KC_K,          KC_L,    KC_SCLN, KC_QUOT,
     KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,        /*  |  */  KC_N,    KC_M,    KC_COMM,       KC_DOT,  KC_SLSH, SYMBOLS,
-    KC_LALT, _______, _______, KC_LCTL, KC_LGUI, S(KC_LGUI),  /*  |  */  KC_ENT,  KC_SPC,  OSM(MOD_HYPR), _______, _______, LOCK
+    _______, _______, KC_LALT, KC_LCTL, KC_LGUI, S(KC_LGUI),  /*  |  */  NUMROW,  KC_SPC,  OSM(MOD_HYPR), _______, _______, _______
 ),
 [_SYMBOLS] = LAYOUT_ortho_5x12(
 //  < ESC >, <  1  >, <  2  >,  <  3  >, <  4  >, <  5  >,  /*  |  */  <  6  >,  <  7  >, <  8  >, <  9  >, <  0  >, < BKSP >
-    _______, KC_EXLM, KC_AT,    KC_HASH, KC_DLR,  KC_PERC,  /*  |  */  KC_CIRC,  KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN, _______,
-    EMOJI,   KC_PERC, KC_PLUS,  KC_LCBR, KC_RCBR, FT_ARR,   /*  |  */  CLN_EQ,   KC_EQL,  KC_AMPR, _______, _______, _______,
+    _______, _______, _______, _______, _______, _______,   /*  |  */  _______, _______, _______,  _______, _______, _______,
+    EMOJI,   KC_PERC, KC_PLUS,  KC_LCBR, KC_RCBR, FT_ARR,   /*  |  */  CLN_EQ,   KC_EQL,  KC_AMPR, KC_0,    _______, _______,
     _______, KC_UNDS, KC_MINUS, KC_LPRN, KC_RPRN, KC_GRV,   /*  |  */  KC_TILDE, KC_DLR,  KC_PIPE, KC_BSLS, _______, _______,
-    _______, _______, _______,  KC_LBRC, KC_RBRC, _______,  /*  |  */  _______,  _______, L_ARR,   R_ARR,   _______, _______,
+    _______, KC_EXLM, KC_AT,    KC_LBRC, KC_RBRC, KC_HASH,  /*  |  */  KC_CIRC,  KC_ASTR, L_ARR,   R_ARR,   _______, _______,
     _______, _______, _______,  _______, _______, _______,  /*  |  */  _______,  _______, _______, _______, _______, _______
 ),
 [_ARROWS] = LAYOUT_ortho_5x12(
@@ -62,11 +56,19 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 ),
 [_NUMS] = LAYOUT_ortho_5x12(
 //  < ESC >, <  1  >, <  2  >, <  3  >, <  4  >, <  5  >,  /*  |  */  <  6  >, <  7  >, <  8  >, <  9  >, <  0  >, < BKSP >
-    _______, _______, _______, _______, _______, _______,  /*  |  */  _______, KC_NUM, _______, _______, _______, _______,
-    _______, _______, _______, _______, _______, _______,  /*  |  */  _______, KC_P7,  KC_P8,   KC_P9,   _______, _______,
+    _______, _______, _______, _______, _______, _______,  /*  |  */  _______, _______, _______, _______, _______, _______,
+    _______, _______, _______, _______, _______, _______,  /*  |  */  KC_NUM,  KC_P7,  KC_P8,   KC_P9,   _______, _______,
     _______, _______, _______, _______, _______, _______,  /*  |  */  _______, KC_P4,  KC_P5,   KC_P6,   _______, _______,
     _______, _______, _______, _______, _______, _______,  /*  |  */  _______, KC_P1,  KC_P2,   KC_P3,   _______, _______,
     _______, _______, _______, _______, _______, _______,  /*  |  */  _______, KC_P0,  _______, KC_PDOT, _______, _______
+),
+[_NUMROW] = LAYOUT_ortho_5x12(
+//  < ESC >, <  1  >, <  2  >, <  3  >, <  4  >, <  5  >,  /*  |  */  <  6  >, <  7  >, <  8  >, <  9  >, <  0  >, < BKSP >
+    _______, _______, _______, _______, _______, _______,  /*  |  */  _______, _______, _______, _______, _______, _______,
+    _______, _______, _______, _______, _______, _______,  /*  |  */  _______, _______, _______, _______, _______, _______,
+    _______, KC_1,    KC_2,    KC_3,    KC_4,    KC_5,     /*  |  */  KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    _______,
+    _______, _______, _______, _______, _______, _______,  /*  |  */  _______, _______, _______, _______, _______, _______,
+    _______, _______, _______, _______, _______, _______,  /*  |  */  _______, _______, _______, _______, _______, _______
 ),
 [_MEDIA] = LAYOUT_ortho_5x12(
 //  < ESC >, <  1  >, <  2  >, <  3  >, <  4  >, <  5  >,  /*  |  */  <  6  >, <  7  >, <  8  >, <  9  >, <  0  >, < BKSP >
@@ -87,10 +89,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [_SYSTEM] = LAYOUT_ortho_5x12(
 //  < ESC >, <  1  >, <  2  >,  <  3  >, <  4  >, <  5  >,  /*  |  */  <  6  >, <  7  >, <  8  >, <  9  >, <  0  >, < BKSP >
     _______, _______, _______,  _______, _______, _______,  /*  |  */  _______, _______, _______, _______, _______, _______,
-    _______, _______, _______,  _______, _______, _______,  /*  |  */  _______, _______, _______, _______, _______, _______,
+    _______, _______, LOCK,     _______, _______, _______,  /*  |  */  _______, _______, _______, _______, _______, _______,
     _______, _______, _______,  _______, _______, _______,  /*  |  */  _______, _______, _______, _______, _______, _______,
     _______, RGB_TOG, RGB_MOD,  RGB_HUI, RGB_SAI, RGB_VAI,  /*  |  */  RGB_SPI, _______, _______, _______, _______, _______,
-    _______, _______, RGB_RMOD, RGB_HUD, RGB_SAD, RGB_VAD,  /*  |  */  RGB_SPD, _______, _______, _______, _______, RESET
+    _______, _______, RGB_RMOD, RGB_HUD, RGB_SAD, RGB_VAD,  /*  |  */  RGB_SPD, _______, _______, RESET,   _______, _______
 ),
 // [_NEW] = LAYOUT_ortho_5x12(
 // //  < ESC >, <  1  >, <  2  >, <  3  >, <  4  >, <  5  >,  /*  |  */  <  6  >, <  7  >, <  8  >, <  9  >, <  0  >, < BKSP >
